@@ -3,5 +3,10 @@
     "type": "file",
     "name": "app",
     "label": "app"
+  },
+  {
+    "type": "file",
+    "name": "auto-updater",
+    "label": "auto-updater"
   }
 ]
