@@ -4,5 +4,10 @@
     "name": "index",
     "label": "Introduction"
   },
-  "why-electron"
+  "why-electron",
+  {
+    "type": "dir",
+    "name": "tutorial",
+    "label": "Tutorial"
+  }
 ]
