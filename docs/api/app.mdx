@@ -1,5 +1,7 @@
 # app
 
+import { Badge } from '@theme';
+
 > Control your application's event lifecycle.
 
 Process: [Main](../glossary.md#main-process)
@@ -33,7 +35,7 @@ In most cases, you should do everything in the `ready` event handler.
 Returns:
 
 * `event` Event
-* `launchInfo` Record\<string, any\> | [NotificationResponse](structures/notification-response.md) _macOS_
+* `launchInfo` Record\<string, any\> | [NotificationResponse](structures/notification-response.md) <Badge text="macOS" type="info" />
 
 Emitted once, when Electron has finished initializing. On macOS, `launchInfo`
 holds the `userInfo` of the [`NSUserNotification`](https://developer.apple.com/documentation/foundation/nsusernotification)
@@ -1227,8 +1229,6 @@ For `infoType` equal to `complete`:
 
 For `infoType` equal to `basic`:
   Promise is fulfilled with `Object` containing fewer attributes than when requested with `complete`. Here's an example of basic response:
-
-<!-- eslint-skip -->
 
 ```js
 {
