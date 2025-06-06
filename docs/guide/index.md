@@ -1,210 +1,72 @@
-# Markdown & MDX
-
-Rspress supports not only Markdown but also [MDX](https://mdxjs.com/), a powerful way to develop content.
-
-## Markdown
-
-MDX is a superset of Markdown, which means you can write Markdown files as usual. For example:
-
-```md
-# Hello world
-```
-
-## Use component
-
-When you want to use React components in Markdown files, you should name your files with `.mdx` extension. For example:
-
-```mdx
-// docs/index.mdx
-import { CustomComponent } from './custom';
-
-# Hello world
-
-<CustomComponent />
-```
-
-## Front matter
-
-You can add Front Matter at the beginning of your Markdown file, which is a YAML-formatted object that defines some metadata. For example:
-
-```yaml
 ---
-title: Hello world
----
-```
-
-> Note: By default, Rspress uses h1 headings as html headings.
-
-You can also access properties defined in Front Matter in the body, for example:
-
-```markdown
----
-title: Hello world
+title: What is Electron?
+description: Welcome to the Electron documentation! If this is your first time developing an Electron app, read through this Getting Started section to get familiar with the basics. Otherwise, feel free to explore our guides and API documentation!
 ---
 
-# {frontmatter.title}
+Electron is a framework for building desktop applications using JavaScript,
+HTML, and CSS. By embedding [Chromium][chromium] and [Node.js][node] into its
+binary, Electron allows you to maintain one JavaScript codebase and create
+cross-platform apps that work on Windows, macOS, and Linux — no native development
+experience required.
+
+## Getting started
+
+We recommend you to start with the [tutorial][], which guides you through the
+process of developing an Electron app and distributing it to users.
+The [examples][] and [API documentation][] are also good places to browse around
+and discover new things.
+
+## Running examples with Electron Fiddle
+
+[Electron Fiddle][fiddle] is a sandbox app written with Electron and supported by
+Electron's maintainers. We highly recommend installing it as a learning tool to
+experiment with Electron's APIs or to prototype features during development.
+
+Fiddle also integrates nicely with our documentation. When browsing through examples
+in our tutorials, you'll frequently see an "Open in Electron Fiddle" button underneath
+a code block. If you have Fiddle installed, this button will open a
+`fiddle.electronjs.org` link that will automatically load the example into Fiddle,
+no copy-pasting required.
+
+```fiddle docs/fiddles/quick-start
 ```
 
-The previously defined properties will be passed to the component as `frontmatter` properties. So the final output will be:
+## What is in the docs?
 
-```html
-<h1>Hello world</h1>
-```
+All the official documentation is available from the sidebar. These
+are the different categories and what you can expect on each one:
 
-## Custom container
+- **Tutorial**: An end-to-end guide on how to create and publish your first Electron
+  application.
+- **Processes in Electron**: In-depth reference on Electron processes and how to work with them.
+- **Best Practices**: Important checklists to keep in mind when developing an Electron app.
+- **Examples**: Quick references to add features to your Electron app.
+- **Development**: Miscellaneous development guides.
+- **Distribution**: Learn how to distribute your app to end users.
+- **Testing And Debugging**: How to debug JavaScript, write tests, and other tools used
+  to create quality Electron applications.
+- **References**: Useful links to better understand how the Electron project works
+  and is organized.
+- **Contributing**: Compiling Electron and making contributions can be daunting.
+  We try to make it easier in this section.
 
-You can use the `:::` syntax to create custom containers and support custom titles. For example:
+## Getting help
 
-**Input:**
+Are you getting stuck anywhere? Here are a few links to places to look:
 
-```markdown
-:::tip
-This is a `block` of type `tip`
-:::
+- If you need help with developing your app, our [community Discord server][discord]
+  is a great place to get advice from other Electron app developers.
+- If you suspect you're running into a bug with the `electron` package, please check
+  the [GitHub issue tracker][issue-tracker] to see if any existing issues match your
+  problem. If not, feel free to fill out our bug report template and submit a new issue.
 
-:::info
-This is a `block` of type `info`
-:::
+<!-- Links -->
 
-:::warning
-This is a `block` of type `warning`
-:::
-
-:::danger
-This is a `block` of type `danger`
-:::
-
-::: details
-This is a `block` of type `details`
-:::
-
-:::tip Custom Title
-This is a `block` of `Custom Title`
-:::
-
-:::tip{title="Custom Title"}
-This is a `block` of `Custom Title`
-:::
-```
-
-**Output:**
-
-:::tip
-This is a `block` of type `tip`
-:::
-
-:::info
-This is a `block` of type `info`
-:::
-
-:::warning
-This is a `block` of type `warning`
-:::
-
-:::danger
-This is a `block` of type `danger`
-:::
-
-::: details
-This is a `block` of type `details`
-:::
-
-:::tip Custom Title
-This is a `block` of `Custom Title`
-:::
-
-:::tip{title="Custom Title"}
-This is a `block` of `Custom Title`
-:::
-
-## Code block
-
-### Basic usage
-
-You can use the \`\`\` syntax to create code blocks and support custom titles. For example:
-
-**Input:**
-
-````md
-```js
-console.log('Hello World');
-```
-
-```js title="hello.js"
-console.log('Hello World');
-```
-````
-
-**Output:**
-
-```js
-console.log('Hello World');
-```
-
-```js title="hello.js"
-console.log('Hello World');
-```
-
-### Show line numbers
-
-If you want to display line numbers, you can enable the `showLineNumbers` option in the config file:
-
-```ts title="rspress.config.ts"
-export default {
-  // ...
-  markdown: {
-    showLineNumbers: true,
-  },
-};
-```
-
-### Wrap code
-
-If you want to wrap long code line by default, you can enable the `defaultWrapCode` option in the config file:
-
-```ts title="rspress.config.ts"
-export default {
-  // ...
-  markdown: {
-    defaultWrapCode: true,
-  },
-};
-```
-
-### Line highlighting
-
-You can also apply line highlighting and code block title at the same time, for example:
-
-**Input:**
-
-````md
-```js title="hello.js" {1,3-5}
-console.log('Hello World');
-
-const a = 1;
-
-console.log(a);
-
-const b = 2;
-
-console.log(b);
-```
-````
-
-**Output:**
-
-```js title="hello.js" {1,3-5}
-console.log('Hello World');
-
-const a = 1;
-
-console.log(a);
-
-const b = 2;
-
-console.log(b);
-```
-
-## Rustify MDX compiler
-
-You can enable Rustify MDX compiler by following config:
+[tutorial]: tutorial-1-prerequisites.md
+[api documentation]: ../api/app.md
+[chromium]: https://www.chromium.org/
+[discord]: https://discord.gg/electronjs
+[examples]: examples.md
+[fiddle]: https://www.electronjs.org/fiddle
+[issue-tracker]: https://github.com/electron/electron/issues
+[node]: https://nodejs.org/
